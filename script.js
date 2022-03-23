@@ -73,11 +73,33 @@ function percent(){
     display.value = per;
 }
 
-display.addEventListener("keydown", function(event){
-    if (event.keyCode === "49"){
+document.addEventListener("keydown", function(event){
+    if (event.key === "1"){
         one();
-    } else if (event.key ===50){
+    } else if (event.key ==="2"){
         two();
+    } else if (event.key ==="3"){
+        three();
+    } else if (event.key ==="4"){
+        four();
+    } else if (event.key ==="5"){
+        five();
+    } else if (event.key ==="6"){
+        six();
+    } else if (event.key ==="7"){
+        seven();
+    } else if (event.key ==="8"){
+        eight();
+    } else if (event.key ==="9"){
+        nine();
+    } else if (event.key ==="0"){
+        zero();
+    } else if (event.key ==="."){
+        decimal();
+    } else if (event.key ==="%"){
+        percent();
+    } else if (event.key ==="-"){
+        neg();
     }
 })
 
