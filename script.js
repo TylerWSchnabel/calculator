@@ -51,22 +51,30 @@ function zero(){
     display.value+= 0;
 }
 function decimal(){
-    if (parseFloat(display.value)%1 === 0){
+    /*if (parseFloat(display.value)%1 === 0){
         display.value+= ".";
     } else{
         return;
+    }*/
+    for (let i=0; i<display.value.length; i++){
+        if (display.value[i] === "."){
+            return
+        } else {
+            display.value +=".";
+        }
     }
 }
 function neg(){
     var negNum = display.value * -1;
     display.value = negNum;
 }
-function clear(){
-    display.value = 0;
+function reset(){
+    display.value = "";
+    console.log("happy");
 }
 
 function equal(){
-
+    display.value = "";
 }
 function percent(){
     var per = display.value * .01;
