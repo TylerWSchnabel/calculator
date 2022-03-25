@@ -19,6 +19,7 @@ body {
     row-gap: 5px;
     padding: 20px;
     margin: auto;
+    box-shadow: 4px 4px black;
 }
 
 .btn {
@@ -44,9 +45,4 @@ body {
     text-align: center;
     padding: 5px;
     margin: 3px;
-}
-
-#equal {
-    grid-column: 3 / span 2;
-    width: 82%;
 }

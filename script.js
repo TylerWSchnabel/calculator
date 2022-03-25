@@ -1,5 +1,12 @@
+var display = document.getElementById("display");
+let prevNum = '';
+let curNum = "";
+let operator = "";
+
+
+/* Equation functions  */
 function add(a,b){
-    return parseFloat(a) + parseFloat(b);
+    return a+b;
 }
 
 function subtract(a,b){
@@ -18,8 +25,8 @@ function operate(operator,num1,num2){
     return operator(num1,num2);
 }
 
-var display = document.getElementById("display");
 
+/* Button Functions */
 function one(){
     display.value+= 1;
 }
@@ -51,36 +58,87 @@ function zero(){
     display.value+= 0;
 }
 function decimal(){
-    /*if (parseFloat(display.value)%1 === 0){
-        display.value+= ".";
-    } else{
+    if (display.value.match(/\./)){
         return;
-    }*/
-    for (let i=0; i<display.value.length; i++){
-        if (display.value[i] === "."){
-            return
-        } else {
-            display.value +=".";
-        }
+    } else{
+        display.value+= ".";
     }
+}
+function backspace(){
+    let arr = display.value.split('');
+    arr.pop();
+    let joined = arr.join('');
+    display.value = joined;
 }
 function neg(){
     var negNum = display.value * -1;
     display.value = negNum;
 }
-function reset(){
-    display.value = "";
-    console.log("happy");
-}
-
-function equal(){
-    display.value = "";
-}
 function percent(){
     var per = display.value * .01;
     display.value = per;
 }
+function reset(){
+    display.value = "";
+    prevNum = '';
+    curNum = '';
+    operator = '';
+}
 
+function equal(){
+    storeVal();
+    operate(operator, prevNum, curNum);
+    operator = "";
+}
+
+function addition(){
+    storeVal();
+    operate(operator, prevNum, curNum);
+    operator = "+";
+}
+function subtraction(){
+    storeVal();
+    operate(operator, prevNum, curNum);
+    operator = "-";
+    
+}
+function multiplication(){
+    storeVal();
+    operate(operator, prevNum, curNum);
+    operator = "*";
+}
+function division(){
+    storeVal();
+    operate(operator, prevNum, curNum);
+    operator = "/";
+}
+
+function storeVal(){
+    prevNum = curNum;
+    curNum = parseFloat(display.value);
+    display.value="";
+}
+
+/* Doing the math */
+var prod = "";
+function operate(operator, prevNum, curNum){
+    if (prevNum != 0){
+        if (operator === "+"){
+            prod = add(prevNum, curNum);
+        } else if (operator === "-"){
+            prod = subtract(prevNum, curNum);
+        } else if (operator === "*"){
+            prod = multiply(prevNum, curNum);
+        } else if (operator === "/"){
+            prod = divide(prevNum, curNum);
+        }
+        display.value = prod;
+    } else {
+        return;
+    }
+}
+
+/* Keyboard buttons */
 document.addEventListener("keydown", function(event){
     if (event.key === "1"){
         one();
@@ -108,10 +166,8 @@ document.addEventListener("keydown", function(event){
         percent();
     } else if (event.key ==="-"){
         neg();
+    } else if (event.key ==="Backspace"){
+        backspace();
     }
 })
 
-console.log(operate(add,5,6));
-console.log(operate(subtract,5,3));
-console.log(operate(multiply,6,3));
-console.log(operate(divide,4,8));
