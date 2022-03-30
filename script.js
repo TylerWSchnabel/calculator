@@ -28,58 +28,68 @@ function operate(operator,num1,num2){
 
 /* Button Functions */
 function one(){
-    display.value+= 1;
+    setZero();
+    display.textContent+= 1;
 }
 function two(){
-    display.value+= 2;
+    setZero();
+    display.textContent+= 2;
 }
 function three(){
-    display.value+= 3;
+    setZero();
+    display.textContent+= 3;
 }
 function four(){
-    display.value+= 4;
+    setZero();
+    display.textContent+= 4;
 }
 function five(){
-    display.value+= 5;
+    setZero();
+    display.textContent+= 5;
 }
 function six(){
-    display.value+= 6;
+    setZero();
+    display.textContent+= 6;
 }
 function seven(){
-    display.value+= 7;
+    setZero();
+    display.textContent+= 7;
 }
 function eight(){
-    display.value+= 8;
+    setZero();
+    display.textContent+= 8;
 }
 function nine(){
-    display.value+= 9;
+    setZero();
+    display.textContent+= 9;
 }
 function zero(){
-    display.value+= 0;
+    setZero();
+    display.textContent+= 0;
 }
 function decimal(){
-    if (display.value.match(/\./)){
+    if (display.textContent.match(/\./)){
         return;
     } else{
-        display.value+= ".";
+        display.textContent+= ".";
     }
 }
 function backspace(){
-    let arr = display.value.split('');
+    let arr = display.textContent.split('');
     arr.pop();
     let joined = arr.join('');
-    display.value = joined;
+    display.textContent = joined;
 }
 function neg(){
-    var negNum = display.value * -1;
-    display.value = negNum;
+    var negNum = display.textContent * -1;
+    display.textContent = negNum;
 }
 function percent(){
-    var per = display.value * .01;
-    display.value = per;
+    var per = display.textContent * .01;
+    display.textContent = per;
 }
 function reset(){
-    display.value = "";
+    display.textContent = "";
     prevNum = '';
     curNum = '';
     operator = '';
@@ -115,14 +125,22 @@ function division(){
 
 function storeVal(){
     prevNum = curNum;
-    curNum = parseFloat(display.value);
-    display.value="";
+    curNum = parseFloat(display.textContent);
+}
+
+function setZero(){
+    if ((parseFloat(display.textContent) === parseFloat(curNum)) || (parseFloat(display.textContent) === parseFloat(prod))){
+        display.textContent = "";
+        console.log('banana')
+    } else {
+        console.log("pass");
+    }
 }
 
 /* Doing the math */
 var prod = "";
 function operate(operator, prevNum, curNum){
-    if (prevNum != 0){
+    if (prevNum != ""){
         if (operator === "+"){
             prod = add(prevNum, curNum);
         } else if (operator === "-"){
@@ -130,9 +148,15 @@ function operate(operator, prevNum, curNum){
         } else if (operator === "*"){
             prod = multiply(prevNum, curNum);
         } else if (operator === "/"){
-            prod = divide(prevNum, curNum);
+            if (curNum === 0){
+                window.alert('WTF are you thinkning?!');
+                reset();
+            } else{
+                prod = divide(prevNum, curNum);
+            }
         }
-        display.value = prod;
+        display.textContent = prod;
+        storeVal();
     } else {
         return;
     }
@@ -165,9 +189,19 @@ document.addEventListener("keydown", function(event){
     } else if (event.key ==="%"){
         percent();
     } else if (event.key ==="-"){
-        neg();
+        subtraction();
     } else if (event.key ==="Backspace"){
         backspace();
-    }
+    } else if (event.key ==="+"){
+        addition();
+    } else if (event.key ==="*"){
+        multiplication();
+    } else if (event.key ==="/"){
+        division();
+    } else if (event.key ==="="){
+        equal();
+    } else if (event.key ==="Enter"){
+        equal();
+    } 
 })
 

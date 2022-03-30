@@ -10,7 +10,6 @@ body {
     background-color: rgb(91, 233, 186);
     padding: 10px;
     border-radius: 10px;
-
     border: 2px solid black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -22,11 +21,15 @@ body {
     box-shadow: 4px 4px black;
 }
 
-.btn {
+.num {
     justify-self: center;
     color: white;
     background-color: black;
     border-radius: 8px;
+    width: 3em;
+    text-align: center;
+    padding: 5px;
+    margin: 3px;
 }
 
 #display{
@@ -39,10 +42,19 @@ body {
     border: 2px solid black;
     text-align: end;
     padding-right:5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .btn {
+    justify-self: center;
+    color: rgb(0, 0, 0);
+    background-color: rgb(198, 191, 226);
+    border-radius: 8px;
     width: 3em;
     text-align: center;
     padding: 5px;
     margin: 3px;
+}
+
+#equal{
+    background-color: rgb(255, 225, 91);
 }
