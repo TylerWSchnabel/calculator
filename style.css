@@ -6,11 +6,12 @@ body {
 }
 @font-face {
     font-family: calculator;
-    src: url(pricedown.bl-regular.otf);
+    src: url(fonts/pricedown.bl-regular.otf);
 }
 .title {
     font-family: calculator;
-
+    font-size: 6em;
+    text-shadow: 4px 4px rgb(91, 233, 186);
 }
 
 
