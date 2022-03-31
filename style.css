@@ -1,12 +1,21 @@
 body {
     background-color: rgb(135, 118, 168);
     text-align: center;
+    align-items: center;
     
+}
+@font-face {
+    font-family: calculator;
+    src: url(pricedown.bl-regular.otf);
+}
+.title {
+    font-family: calculator;
+
 }
 
 
 .cal {
-    width: 35%;
+    width: 250px;
     background-color: rgb(91, 233, 186);
     padding: 10px;
     border-radius: 10px;
